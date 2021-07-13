@@ -5,8 +5,8 @@ import './App.css';
 function App () {
   const [categories, setCategories] = useState([])
   useEffect(() => {
-    axios.get('https://opentdb.com/api.php?amount=10')
-      .then(res => setCategories(res.data.results))
+    axios.get('https://opentdb.com/api_category.php')
+      .then(res => setCategories(res.data.trivia_categories))
   }, [])
   return (
     <main className='title'>
@@ -15,8 +15,8 @@ function App () {
       <div className='container'>
         {categories.map(category => {
           return (
-            <div key={category.category}>
-              <p>{category.category}</p>
+            <div key={category.id}>
+              <p>{category.name}</p>
             </div>
           )
         })}
