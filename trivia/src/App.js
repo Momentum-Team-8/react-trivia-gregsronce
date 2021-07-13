@@ -11,8 +11,9 @@ function App () {
   return (
     <main className='title'>
       <h1>Trivia Game</h1>
-      <div>
-        {categories.trivia_categories.map(category => {
+      <h2>Categories</h2>
+      <div className='container'>
+        {categories.trivia_categories && categories.trivia_categories.map(category => {
           return (
             <div key={category.id}>
               <p>{category.name}</p>
