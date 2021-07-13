@@ -5,18 +5,18 @@ import './App.css';
 function App () {
   const [categories, setCategories] = useState([])
   useEffect(() => {
-    axios.get('https://opentdb.com/api_category.php')
-      .then(res => setCategories(res.data))
+    axios.get('https://opentdb.com/api.php?amount=10')
+      .then(res => setCategories(res.data.results))
   }, [])
   return (
     <main className='title'>
       <h1>Trivia Game</h1>
       <h2>Categories</h2>
       <div className='container'>
-        {categories.trivia_categories && categories.trivia_categories.map(category => {
+        {categories.map(category => {
           return (
-            <div key={category.id}>
-              <p>{category.name}</p>
+            <div key={category.category}>
+              <p>{category.category}</p>
             </div>
           )
         })}
