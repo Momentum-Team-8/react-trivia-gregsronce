@@ -1,18 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
-import { getCategoriesList } from './api'
+import { getCategoryList } from './api'
 import { CategoryList } from './components/CategoryList'
+import { CategoryData } from './components/CategoryData'
 
 function App () {
   const [categories, setCategories] = useState([])
+  const [selectedCategory, setSelectedCategory] = useState(null)
   useEffect(() => {
-    getCategoriesList().then((categories) => setCategories(categories))
+    getCategoryList().then((categories) => setCategories(categories))
   }, [])
   return (
-    <CategoryList
-      categories={categories}
-    />
+    <div className='container'>
+      {selectedCategory
+        ? <CategoryData selectedCategory={selectedCategory} />
+        : (
+          <CategoryList
+            categories={categories}
+            setSelectedCategory={setSelectedCategory}
+          />
+          )}
+    </div>
   );
 }
 
