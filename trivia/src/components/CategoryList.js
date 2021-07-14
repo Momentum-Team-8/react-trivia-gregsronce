@@ -12,8 +12,8 @@ export const CategoryList = (props) => {
         {categories.map(category => {
           return (
             <div key={category.id} className='category-button'>
-              <p>{category.name}</p>
-              <button className='button' onClick={() => setSelectedCategory(category)}>Select Category</button>
+              <p className='category-name'><strong>{category.name}</strong></p>
+              <button className='button is-link' onClick={() => setSelectedCategory(category)}>Select Category</button>
             </div>
           )
         })}
@@ -21,4 +21,3 @@ export const CategoryList = (props) => {
     </main>
   )
 }
-
