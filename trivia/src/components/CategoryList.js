@@ -4,16 +4,13 @@ export const CategoryList = (props) => {
   const { categories, setSelectedCategory } = props
   return (
     <main className='main'>
-      <div className='header'>
-        <h1 className='title'>Trivia Game</h1>
-        <h2 className='subtitle'>Select a Category</h2>
-      </div>
+      <h1 className='title'>Time for Trivia!</h1>
+      <h1 className='title'>Select a Category</h1>
       <div className='container'>
         {categories.map(category => {
           return (
-            <div key={category.id} className='category-button'>
-              <p className='category-name'><strong>{category.name}</strong></p>
-              <button className='button is-link' onClick={() => setSelectedCategory(category)}>Select Category</button>
+            <div key={category.id} className='box'>
+              <button className='button is-info is-rounded' onClick={() => setSelectedCategory(category)}>{category.name}</button>
             </div>
           )
         })}

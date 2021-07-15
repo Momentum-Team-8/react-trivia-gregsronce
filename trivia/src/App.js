@@ -12,7 +12,7 @@ function App () {
     getCategoryList().then((categories) => setCategories(categories))
   }, [])
   return (
-    <div className='container'>
+    <div className='main'>
       {selectedCategory
         ? <CategoryData selectedCategory={selectedCategory} />
         : (

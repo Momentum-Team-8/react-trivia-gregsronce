@@ -4,16 +4,26 @@
   box-sizing: border-box;
 } 
 
-.main {
-  margin-left: 20px;
+.category-header, .questions, .main {
+  margin-left: 10px;
 }
 
 .container {
   margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .category-name {
   font-size: 20px;
 }
 
+.category-title {
+  font-size: 40px;
+  text-align: center;
+}
 
+.box {
+  margin: 20px;
+  border: solid 2px orange;
+}

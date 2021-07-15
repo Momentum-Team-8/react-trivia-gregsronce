@@ -11,7 +11,6 @@ export const CategoryData = (props) => {
 
   useEffect(() => {
     getCategoryData(selectedCategory).then(data => {
-      console.log(data)
       setCategoryData(data)
       setLoading(false)
     })
@@ -21,23 +20,25 @@ export const CategoryData = (props) => {
     ? 'Category data is loading'
     : (
       <>
-        <div className='header'>
-          <p className='title'>{selectedCategory.name}</p>
+        <div className='category-header'>
+          <p className='title hero is-info'>{selectedCategory.name}</p>
           <button className='button is-primary' onClick={refreshPage}>Back to Category List</button>
         </div>
-        <div className='div'>
+        <div className='questions'>
           {categoryData.map((data) => {
             return (
               <div key={data.question}>
                 <p><strong>{data.question}</strong></p>
-                <p>{data.correct_answer}</p>
-                <p className='incorrect-answers'> {data.incorrect_answers[0]}</p>
-                {data.incorrect_answers &&
-                  <p className='incorrect-answers'> {data.incorrect_answers[1]}</p>
-                }
-                {data.incorrect_answers &&
-                  <p className='incorrect-answers'> {data.incorrect_answers[2]}</p>
-                }
+                <ul>
+                  <li>{data.correct_answer}</li>
+                  <li className='incorrect-answers'> {data.incorrect_answers[0]}</li>
+                  {data.incorrect_answers &&
+                    <li className='incorrect-answers'> {data.incorrect_answers[1]}</li>
+                  }
+                  {data.incorrect_answers &&
+                    <li className='incorrect-answers'> {data.incorrect_answers[2]}</li>
+                  }
+                </ul>
               </div>
             )
           })}
