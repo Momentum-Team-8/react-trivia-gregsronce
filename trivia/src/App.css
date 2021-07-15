@@ -27,3 +27,7 @@
   margin: 20px;
   border: dotted 2px;
 }
+
+section > button {
+  margin: 10px;
+}
