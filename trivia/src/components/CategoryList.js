@@ -5,7 +5,7 @@ export const CategoryList = (props) => {
   return (
     <main className='main'>
       <h1 className='title'>Time for Trivia!</h1>
-      <h1 className='title'>Select a Category</h1>
+      <h1 className='title'>Select a Category:</h1>
       <div className='container'>
         {categories.map(category => {
           return (
