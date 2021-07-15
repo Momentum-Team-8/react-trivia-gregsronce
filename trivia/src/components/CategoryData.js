@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { getCategoryData } from '../api'
+import he from 'he'
+import { AnswerChoices } from './AnswerChoices'
 
 export const CategoryData = (props) => {
   const [categoryData, setCategoryData] = useState({})
   const [loading, setLoading] = useState(true)
+  const [answered, setAnswered] = useState(false)
+  const [correct, setCorrect] = useState(false)
   const { selectedCategory } = props
   const refreshPage = () => {
     window.location.reload()
@@ -15,6 +19,12 @@ export const CategoryData = (props) => {
       setLoading(false)
     })
   }, [selectedCategory])
+  const commitAnswer = () => {
+    if (correct) {
+      console.log(correct)
+    }
+    setAnswered(false)
+  }
 
   return loading
     ? 'Category data is loading'
@@ -28,17 +38,15 @@ export const CategoryData = (props) => {
           {categoryData.map((data) => {
             return (
               <div key={data.question}>
-                <p><strong>{data.question}</strong></p>
-                <ul>
-                  <li>{data.correct_answer}</li>
-                  <li className='incorrect-answers'> {data.incorrect_answers[0]}</li>
-                  {data.incorrect_answers &&
-                    <li className='incorrect-answers'> {data.incorrect_answers[1]}</li>
-                  }
-                  {data.incorrect_answers &&
-                    <li className='incorrect-answers'> {data.incorrect_answers[2]}</li>
-                  }
-                </ul>
+                <p><strong>{he.decode(data.question)}</strong></p>
+                <section key={data.question}>
+                  <AnswerChoices
+                    answers={{ correctAnswer: he.escape(data.correct_answer), incorrectAnswers: data.incorrect_answers }}
+                    checkAnswer={setCorrect}
+                    setAnswered={setAnswered}
+                    commitAnswer={commitAnswer}
+                  />
+                </section>
               </div>
             )
           })}
@@ -46,3 +54,14 @@ export const CategoryData = (props) => {
       </>
       )
 }
+
+{/* <ul>
+<li>{he.decode(data.correct_answer)}</li>
+<li className='incorrect-answers'> {data.incorrect_answers[0]}</li>
+{data.incorrect_answers &&
+  <li className='incorrect-answers'> {data.incorrect_answers[1]}</li>
+}
+{data.incorrect_answers &&
+  <li className='incorrect-answers'> {data.incorrect_answers[2]}</li>
+}
+</ul> */}
