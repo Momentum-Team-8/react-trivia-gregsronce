@@ -22,6 +22,7 @@ export const CategoryData = (props) => {
   const commitAnswer = () => {
     if (correct) {
       console.log('You answered ', correct)
+      console.log(answered)
     }
     setAnswered(false)
   }
@@ -54,14 +55,3 @@ export const CategoryData = (props) => {
       </>
       )
 }
-
-{/* <ul>
-<li>{he.decode(data.correct_answer)}</li>
-<li className='incorrect-answers'> {data.incorrect_answers[0]}</li>
-{data.incorrect_answers &&
-  <li className='incorrect-answers'> {data.incorrect_answers[1]}</li>
-}
-{data.incorrect_answers &&
-  <li className='incorrect-answers'> {data.incorrect_answers[2]}</li>
-}
-</ul> */}
