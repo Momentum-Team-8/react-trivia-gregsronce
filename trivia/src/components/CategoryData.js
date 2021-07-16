@@ -21,7 +21,7 @@ export const CategoryData = (props) => {
   }, [selectedCategory])
   const commitAnswer = () => {
     if (correct) {
-      console.log(correct)
+      console.log('You answered ', correct)
     }
     setAnswered(false)
   }
