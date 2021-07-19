@@ -6,8 +6,7 @@ import { AnswerChoices } from './AnswerChoices'
 export const CategoryData = (props) => {
   const [categoryData, setCategoryData] = useState({})
   const [loading, setLoading] = useState(true)
-  const [answered, setAnswered] = useState(false)
-  const [correct, setCorrect] = useState(false)
+  const [score, setScore] = useState(0)
   const { selectedCategory, setSelectedCategory } = props
 
   useEffect(() => {
@@ -17,15 +16,6 @@ export const CategoryData = (props) => {
     })
   }, [selectedCategory])
 
-  const commitAnswer = () => {
-    if (correct) {
-      console.log('You answered ', correct)
-      console.log(answered)
-      setAnswered(true)
-    }
-    setAnswered(false)
-  }
-
   return loading
     ? 'Category data is loading'
     : (
@@ -34,6 +24,7 @@ export const CategoryData = (props) => {
           <p className='title hero is-info'>{selectedCategory.name}</p>
           <button className='button is-primary' onClick={() => setSelectedCategory(null)}>Back to Category List</button>
         </div>
+        <h1>{score}</h1>
         <div className='questions'>
           {categoryData.map((data) => {
             return (
@@ -42,9 +33,8 @@ export const CategoryData = (props) => {
                 <section key={data.question}>
                   <AnswerChoices
                     answers={{ correctAnswer: he.decode(data.correct_answer), incorrectAnswers: data.incorrect_answers }}
-                    checkAnswer={setCorrect}
-                    setAnswered={setAnswered}
-                    commitAnswer={commitAnswer}
+                    setScore={setScore}
+                    score={score}
                   />
                 </section>
               </div>
