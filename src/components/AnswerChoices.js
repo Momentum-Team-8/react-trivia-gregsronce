@@ -8,9 +8,10 @@ export const AnswerChoices = ({ answers, setAnswered, checkAnswer, commitAnswer 
     [correctAnswer, incorrectAnswers]
   )
   const handleClick = (answer) => {
+    console.log('Selected answer:', answer)
     setAnswered(true)
     checkAnswer(correctAnswer === answer)
-    commitAnswer()
+    commitAnswer(answer)
   }
   return shuffledAnswers.map((item) => {
     return (

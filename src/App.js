@@ -14,7 +14,7 @@ function App () {
   return (
     <div className='main'>
       {selectedCategory
-        ? <CategoryData selectedCategory={selectedCategory} />
+        ? <CategoryData selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
         : (
           <CategoryList
             categories={categories}
